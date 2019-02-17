@@ -7,20 +7,83 @@
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <title>Memory Game</title>
  <style>
-  body {margin:0; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
-  div {border:1px solid #ccc; padding:1rem; max-width:40rem; margin:1rem auto}
-  ul {list-style-type:none; padding-left: 0;  border:1px solid #aaa; margin-top:0; margin-bottom:0;}
-  ul li {display:flex;}
-  ul li span {flex:1; margin:0; line-height: 1.8rem; padding-left: 1rem;}
-  ul li span:nth-of-type(1) { border-right:1px solid #aaa; }
-  ul.header {background-color: #bba; border-width: 1px 1px 0 1px;}
-  ul.header li span {background-color: #bba; text-align:center; font-weight: bold; word-break: break-word;}
-  ul#wordList li:nth-child(odd) {background-color: #eee;}
-  ul#wordList li:nth-child(even) {background-color: #ddd;}
+  body {
+ margin: 0;
+ font-family: 'Lucida Sans', Verdana, sans-serif;
+}
+
+nav {
+ position: fixed;
+ left: 1rem;
+ top: -5px;
+ background-color: #eee;
+ border: 1px solid #999;
+ border-radius: 5px;
+ border-width: 0 1px 1px 1px;
+ padding: .5rem;
+}
+
+nav a:hover {
+ background-color: #ddd;
+ padding: .5rem 0;
+ color: #333;
+}
+
+div {
+ border: 1px solid #ccc;
+ padding: 1rem;
+ max-width: 40rem;
+ margin: 1rem auto
+}
+
+ul {
+ list-style-type: none;
+ padding-left: 0;
+ border: 1px solid #aaa;
+ margin-top: 0;
+ margin-bottom: 0;
+}
+
+ul li {
+ display: flex;
+}
+
+ul li span {
+ flex: 1;
+ margin: 0;
+ line-height: 1.8rem;
+ padding-left: 1rem;
+}
+
+ul li span:nth-of-type(1) {
+ border-right: 1px solid #aaa;
+}
+
+ul.header {
+ background-color: #bba;
+ border-width: 1px 1px 0 1px;
+}
+
+ul.header li span {
+ background-color: #bba;
+ text-align: center;
+ font-weight: bold;
+ word-break: break-word;
+}
+
+ul#wordList li:nth-child(odd) {
+ background-color: #eee;
+}
+
+ul#wordList li:nth-child(even) {
+ background-color: #ddd;
+}
  </style>
 </head>
 
 <body>
+ <nav><a href="https://tdudkowski.github.io/">to Github Page</a> | <a href="https://github.com/tdudkowski/Memory-Game/">repo
+   of Memory Game</a></nav>
  <div>
   <h1>Memory Game (although not yet)</h1>
   <p>First stage of Memory Game site, main tasks To-Do are import / export data, and - oh, I forgot! - Game!</p>
@@ -44,7 +107,7 @@
  <div>
   <h2>Data output</h2>
   <ul class="header">
-   <li><span>orignal</span><span>translation</span></li>
+   <li><span>original</span><span>translation</span></li>
   </ul>
   <ul id="wordList"></ul>
  </div>
