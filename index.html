@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Memory Game</title>
+ <style>
+  body {margin:0; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+  div {border:1px solid #ccc; padding:1rem; max-width:40rem; margin:1rem auto}
+  ul {list-style-type:none; padding-left: 0;  border:1px solid #aaa; margin-top:0; margin-bottom:0;}
+  ul li {display:flex;}
+  ul li span {flex:1; margin:0; line-height: 1.8rem; padding-left: 1rem;}
+  ul li span:nth-of-type(1) { border-right:1px solid #aaa; }
+  ul.header {background-color: #bba; border-width: 1px 1px 0 1px;}
+  ul.header li span {background-color: #bba; text-align:center; font-weight: bold; word-break: break-word;}
+  ul#wordList li:nth-child(odd) {background-color: #eee;}
+  ul#wordList li:nth-child(even) {background-color: #ddd;}
+ </style>
+</head>
+
+<body>
+ <div>
+  <h1>Memory Game (although not yet)</h1>
+  <p>First stage of Memory Game site, main tasks To-Do are import / export data, and - oh, I forgot! - Game!</p>
+  <p>At this moment this is just a presentation of localStorage, browser's function allowing keep page data even if
+   page is reloaded (with Ctrl-Shift+R as well).</p>
+   
+  <h2>Data entry</h2>
+  <p>Both fields should be filled</p>
+  <form action="">
+   <label for="">First word: </label><input type="text" id="txtOrg">
+   <label for="">Second word: </label><input type="text" id="txtTr">
+   <input type="button" value="submit" id="addbtn">
+   
+   <h2>Delete</h2>
+   <p>Data is kept in internal memory of browser, and is avalible at every entry at page. It can be deleted manually -
+    webtools / Application / Storage / Local Storage. Handle with care! It's possible to clear all password data.</p>
+   <p>Button below is a safe way to delete only data from this table.</p>
+   <button id="clearls">Clear localStorage from this page only</button>
+ </div>
+ 
+ <div>
+  <h2>Data output</h2>
+  <ul class="header">
+   <li><span>orignal</span><span>translation</span></li>
+  </ul>
+  <ul id="wordList"></ul>
+ </div>
+ </form>
+ 
+ <script>
+  const add = document.getElementById('addbtn');
+  const txtOrg = document.getElementById('txtOrg');
+  const txtTr = document.getElementById('txtTr');
+  const wordList = document.getElementById('wordList');
+  const btnclr = document.getElementById('clearls');
+  const itemsArray = JSON.parse(localStorage.getItem('itemsArray')) || []
+  
+  const addElement = () => {
+   console.log(itemsArray);
+   wordList.innerHTML = '';
+   for (let i = 0; i < itemsArray.length; i++) {
+    const li = document.createElement('li');
+    li.innerHTML =
+     `<span>${itemsArray[i].original}</span> <span>${itemsArray[i].translation}</span>`;
+    wordList.appendChild(li);
+   }
+   localStorage.setItem('itemsArray', JSON.stringify(itemsArray));
+  }
+
+  const addVerb = () => {
+   if (txtOrg.value == '' || txtTr.value == '') return;
+   // console.log(this + txtOrg.value + ' elo')
+   original = txtOrg.value;
+   translation = txtTr.value;
+   itemsArray.push({
+    original,
+    translation
+   });
+   txtOrg.value = '';
+   txtTr.value = '';   
+   addElement();
+  }
+
+  addElement();
+  
+  add.addEventListener('click', addVerb);
+  clearls.addEventListener('click', () => localStorage.removeItem('itemsArray')) // localStorage.clear())
+ </script>
+</body>
+
+</html>
